@@ -6,7 +6,10 @@ use Illuminate\Http\Request;
 
 class ControllerFilme extends Controller
 {
-    public function allFIlmes(){
+    public function allFilmes(){
+        return view('teste');
+    }
+    public function Filme(){
         return view('teste');
     }
 
