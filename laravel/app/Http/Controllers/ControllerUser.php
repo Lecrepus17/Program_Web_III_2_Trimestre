@@ -7,7 +7,7 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
-class ControllerUsuario extends Controller
+class ControllerUser extends Controller
 {
     public function createUser(Request $request){
         if ($request->isMethod('POST')) {
