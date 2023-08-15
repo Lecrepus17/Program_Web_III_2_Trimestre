@@ -21,5 +21,5 @@ Route::get('/', function () {
 
 //Route::get('/teste', [ControllerFilme::class, 'allFilmes'])->name('teste');
 
-Route::get('/addUser', [ControllerUsuario::class, 'createUser'])->name('create.user');
+Route::get('/addUser', [ControllerUser::class, 'createUser'])->name('create.user');
 //Route::post('/addUser', [ControllerUsuario::class, 'createUser']);

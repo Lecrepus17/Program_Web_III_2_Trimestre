@@ -9,12 +9,4 @@ class ControllerCategoria extends Controller
     public function createCategoria(){
 
     }
-
-    public function editCategoria(){
-
-    }
-
-    public function deleteCategoria(){
-
-    }
 }
