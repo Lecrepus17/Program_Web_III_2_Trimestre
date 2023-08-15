@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\ControllerFilme;
+use App\Http\Controllers\ControllerUsuario;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +18,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+//Route::get('/teste', [ControllerFilme::class, 'allFilmes'])->name('teste');
+
+Route::get('/addUser', [ControllerUsuario::class, 'createUser'])->name('create.user');
+//Route::post('/addUser', [ControllerUsuario::class, 'createUser']);
