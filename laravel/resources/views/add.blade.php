@@ -4,21 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Add user</title>
+    <title>Adicionar usúario</title>
+    <link rel="stylesheet" href="{{ asset("css/style.css") }}">
 </head>
 <body>
-        <h2>Adicionar usuários</h2>
 
-    <form action="" method="post">
-
+<div class="login-container">
+    <a href="{{ route('login') }}">Logar</a>
+    <form action="{{ url()->current() }}" method="post" class="login-form">
         @csrf
+        <h2>Adicionar usuários</h2>
         <input type="text" name="name" placeholder="Nome">
-        <br>
         <input type="text" name="email" placeholder="Email">
-        <br>
         <input type="password" name="password" placeholder="Senha">
-        <br>
-        <input type="submit" value="Gravar">
+        <input type="submit" value="Criar">
     </form>
+</div>
+
 </body>
 </html>

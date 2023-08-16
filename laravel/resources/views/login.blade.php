@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-Br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,10 +12,11 @@
     <div>{{ session('erro') }}</div>
 @endif
 <div class="login-container">
-    <a href="{{ route('create.user') }}"></a>
+
     <form action="{{ url()->current() }}" method="POST" class="login-form">
         @csrf
         <h1>Login</h1>
+        <a href="{{ route('create.user') }}">Criar Conta</a>
         <input type="email" name="email" placeholder="Email">
         <input type="password" name="password" placeholder="Password">
         <input type="submit" value="Login">

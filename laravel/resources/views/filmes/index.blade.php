@@ -1,6 +1,7 @@
 @extends('includes.layout')
 
 @section('content')
+
     <div class="film-gallery">
         @foreach ($filmes as $filme)
             <a href="{{ route('filmes.show', $filme->id) }}">
