@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\ControllerFilme;
 use App\Http\Controllers\ControllerUser;
-use Symfony\Component\Routing\Route;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,11 +15,23 @@ use Symfony\Component\Routing\Route;
 |
 */
 
-//Route::get('/', function () {
-//    return view('welcome');
-//});
 
-//Route::get('/teste', [ControllerFilme::class, 'allFilmes'])->name('teste');
+Route::get('/', function () {
+    return view('welcome');
+});
+Route::get('/login', [ControllerUser::class, 'login'])->name('login');
+Route::post('/login', [ControllerUser::class, 'login']);
+Route::get('/logout', [ControllerUser::class, 'logout'])->name('logout');
 
-//Route::get('/addUser', [ControllerUser::class, 'createUser'])->name('create.user');
+// Usuário Autenticado
+Route::middleware('auth')->group(function (){
+Route::get('/addUser', [ControllerUser::class, 'createUser'])->name('create.user');
+Route::get('/filmes', [ControllerFilme::class, 'index'])->name('filmes.index');
+Route::get('/filmes/{id}', [ControllerFilme::class, 'show'])->name('filmes.show');
 //Route::post('/addUser', [ControllerUsuario::class, 'createUser']);
+});
+
+// Admin Autenticado
+Route::middleware('isAdmin')->group(function (){
+//Route::post('/addUser', [ControllerUsuario::class, 'createUser']);
+});
