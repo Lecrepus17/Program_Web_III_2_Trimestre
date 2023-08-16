@@ -39,14 +39,47 @@ class ControllerUser extends Controller
         //return view('add');
     }
 
-    public function deleteUser(){
+    public function destroy($id)
+    {
+        $user = User::findOrFail($id);
 
+        // Verificar se o usuário atual é o admin ou se está tentando excluir a si mesmo
+        if ($user->id == auth()->user()->id) {
+            return redirect()->route('users')->with('error', 'Você não tem permissão para excluir este usuário.');
+        }
+
+        $user->delete();
+
+        return redirect()->route('users');
     }
 
-    public function editUser(){
-
+    public function userEdit($id)
+    {
+        $user = User::findOrFail($id);
+        return view('users.edit', compact('user'));
     }
 
+    public function userUpdate(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email|unique:users,email,' . $user->id,
+        ]);
+
+        $user->update([
+            'name' => $request->name,
+            'email' => $request->email,
+        ]);
+
+        return redirect()->route('users');
+    }
+    public function index()
+    {
+        $users = User::all();
+        return view('users.index', compact('users'));
+    }
     public function login(Request $request){
         if($request->isMethod('POST')){
             $data = $request->validate([
@@ -63,7 +96,19 @@ class ControllerUser extends Controller
     }
     public function logout(){
         Auth::logout();
-        return redirect()->route('teste');
+        return redirect()->route('login');
     }
+    public function promote($id)
+    {
+        $user = User::findOrFail($id);
 
+        // Verificar se o usuário atual é o admin
+        if (!auth()->user()->admin) {
+            return redirect()->route('users')->with('error', 'Você não tem permissão para promover usuários.');
+        }
+
+        $user->update(['admin' => true]);
+
+        return redirect()->route('users')->with('success', 'Usuário promovido para administrador.');
+    }
 }

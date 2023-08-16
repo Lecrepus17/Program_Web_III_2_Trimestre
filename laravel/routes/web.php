@@ -16,9 +16,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [ControllerUser::class, 'login']);
+Route::post('/', [ControllerUser::class, 'login']);
 Route::get('/login', [ControllerUser::class, 'login'])->name('login');
 Route::post('/login', [ControllerUser::class, 'login']);
 Route::get('/logout', [ControllerUser::class, 'logout'])->name('logout');
@@ -38,5 +37,12 @@ Route::get('/filmes/{id}', [ControllerFilme::class, 'show'])->name('filmes.show'
 Route::middleware('isAdmin')->group(function (){
 Route::get('/addFilme', [ControllerFilme::class, 'createFilmes'])->name('create.filme');
 Route::post('/addFilme', [ControllerFilme::class, 'createFilmes']);
+
+Route::get('/users', [ControllerUser::class, 'index'])->name('users');
+Route::get('/userEdit/{id}', [ControllerUser::class, 'userEdit'])->name('users.edit');
+Route::put('/userUpdate/{id}', [ControllerUser::class, 'userUpdate'])->name('users.update');
+Route::get('/userDelete/{id}', [ControllerUser::class, 'destroy'])->name('users.delete');
+Route::get('/users/promote/{id}', [ControllerUser::class, 'promote'])->name('users.promote');
+
 });
 
