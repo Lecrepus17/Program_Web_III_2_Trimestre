@@ -2,15 +2,35 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categoria;
 use App\Models\Filme;
 use Illuminate\Http\Request;
 
 class ControllerFilme extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $filmes = Filme::all();
-        return view('filmes.index', compact('filmes'));
+        $filmesQuery = Filme::query();
+
+        if ($request->has('categoria') && $request->categoria != null) {
+            $categoriaId = $request->categoria;
+
+            $filmesQuery->whereHas('categorias', function ($query) use ($categoriaId) {
+                $query->where('categorias.id', $categoriaId);
+            });
+        }
+
+        if ($request->has('ano') && $request->ano != null) {
+            $ano = $request->ano;
+            $filmesQuery->where('ano', $ano);
+        }
+
+        $filmes = $filmesQuery->get();
+
+        $categorias = Categoria::all();
+        $anos = Filme::distinct('ano')->pluck('ano');
+
+        return view('filmes.index', compact('filmes', 'categorias', 'anos'));
     }
 
     public function show($id)
@@ -40,6 +60,7 @@ class ControllerFilme extends Controller
         //return dd($film);
     }
 
+
     public function deleteFilmes($id){
 
         $filme = Filme::findOrFail($id);
@@ -47,7 +68,10 @@ class ControllerFilme extends Controller
         $filme->delete();
 
         return redirect()->route('filmes.index');
+    }
 
+    public function filcaters(){
+        return $this->hasMany(Filcater::class, 'filme_fk');
     }
 
     public function editFilmes(Filme $filme){

@@ -2,7 +2,30 @@
 
 @section('content')
 
+
 <a href="{{ route('create.filme') }}">Adicionar filmes</a>
+
+    <div class="film-filters">
+        <form action="{{ route('filmes.index') }}" method="GET">
+            <label for="ano">Filtrar por Ano:</label>
+            <select name="ano" id="ano">
+                <option value="">Todos</option>
+                @foreach ($anos as $ano)
+                    <option value="{{ $ano }}" {{ request('ano') == $ano ? 'selected' : '' }}>{{ $ano }}</option>
+                @endforeach
+            </select>
+            <label for="categoria">Filtrar por Categoria:</label>
+            <select name="categoria" id="categoria">
+                <option value="">Todas</option>
+                @foreach ($categorias as $categoria)
+                    <option value="{{ $categoria->id }}" {{ request('categoria') == $categoria->id ? 'selected' : '' }}>{{ $categoria->name }}</option>
+                @endforeach
+            </select>
+            <button type="submit">Filtrar</button>
+        </form>
+    </div>
+
+
     <div class="film-gallery">
         @foreach ($filmes as $filme)
         <div class="film-card">
@@ -12,7 +35,7 @@
                     <p>{{ $filme->name }}</p>
 
             </a>
-                        @if (auth()->user()->admin)
+        @if (auth()->user()->admin)
             <div class="film-actions">
                 <a href="{{ route('edit.filme', $filme->id)}}">Editar</a>
                 <form action="{{ route('delete.filme', $filme->id) }}" method="POST">

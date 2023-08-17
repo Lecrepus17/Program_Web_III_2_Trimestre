@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categoria;
+use App\Models\Filme;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
@@ -75,11 +77,7 @@ class ControllerUser extends Controller
 
         return redirect()->route('users');
     }
-    public function index()
-    {
-        $users = User::all();
-        return view('users.index', compact('users'));
-    }
+
     public function login(Request $request){
         if($request->isMethod('POST')){
             $data = $request->validate([

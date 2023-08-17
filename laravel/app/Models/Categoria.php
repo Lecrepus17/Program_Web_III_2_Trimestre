@@ -9,7 +9,10 @@ class Categoria extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'name',
-        'indicativa'
+        'name'
     ];
+    public function filmes()
+    {
+        return $this->belongsToMany(Filme::class, 'filcaters', 'categoria_fk', 'filme_fk');
+    }
 }

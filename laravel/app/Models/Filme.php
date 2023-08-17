@@ -16,4 +16,8 @@ class Filme extends Model
         'imagem',
         'link'
     ];
+    public function categorias()
+    {
+        return $this->belongsToMany(Categoria::class, 'filcaters', 'filme_fk', 'categoria_fk');
+    }
 }
