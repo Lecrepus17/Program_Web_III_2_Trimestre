@@ -42,13 +42,17 @@ class ControllerFilme extends Controller
 
     public function createFilmes(Request $request){
         if ($request->isMethod('POST')) {
+
+            $imagePath = $request->file('imagem')->store('imagem', 'public');
+
+
             $film = [
                 'name' => request('name'),
                 'sinopse' => request('sinopse'),
                 'ano' => request('ano'),
-                'imagem' => request('imagem'),
                 'link' => request('link'),
             ];
+            $film['imagem'] = $imagePath;
 
             Filme::create($film);
             // Lança um evento Registered que vai enviar um e-mail para o usuário
