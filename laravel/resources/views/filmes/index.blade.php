@@ -1,34 +1,31 @@
 @extends('includes.layout')
 
 @section('content')
-
-<a href="{{ route('logout')}}">Sair</a>
-<a href="{{ route('create.filme') }}">Adicionar filmes</a>
-<a href="{{ route('create.cater') }}">Adicionar Categoria</a>
-<div class="login-form">
-    <div class="film-filters">
-        <form action="{{ route('filmes.index') }}" method="GET">
-            <label for="ano">Filtrar por Ano:</label>
-            <select name="ano" id="ano">
-                <option value="">Todos</option>
-                @foreach ($anos as $ano)
-                    <option value="{{ $ano }}" {{ request('ano') == $ano ? 'selected' : '' }}>{{ $ano }}</option>
-                @endforeach
-            </select>
-            <label for="categoria">Filtrar por Categoria:</label>
-            <select name="categoria" id="categoria">
-                <option value="">Todas</option>
-                @foreach ($categorias as $categoria)
-                    <option value="{{ $categoria->id }}" {{ request('categoria') == $categoria->id ? 'selected' : '' }}>{{ $categoria->name }}</option>
-                @endforeach
-            </select>
-            <div class="film-actions">
-               <button type="submit">Filtrar</button>
-            </div>
-
-        </form>
+<form action="{{ route('filmes.index') }}" method="GET" class="filter-form-2">
+    <div class="filter-group-2">
+        <label for="ano">Filtrar por Ano:</label>
+        <select name="ano" id="ano" class="filter-select-2">
+            <option value="">Todos</option>
+            @foreach ($anos as $ano)
+                <option value="{{ $ano }}" {{ request('ano') == $ano ? 'selected' : '' }}>{{ $ano }}</option>
+            @endforeach
+        </select>
     </div>
-</div>
+    <div class="filter-group-2">
+        <label for="categoria">Filtrar por Categoria:</label>
+        <select name="categoria" id="categoria" class="filter-select-2">
+            <option value="">Todas</option>
+            @foreach ($categorias as $categoria)
+                <option value="{{ $categoria->id }}" {{ request('categoria') == $categoria->id ? 'selected' : '' }}>{{ $categoria->name }}</option>
+            @endforeach
+        </select>
+    </div>
+    <div class="filter-actions-2">
+        <button type="submit" class="filter-button-2">Filtrar</button>
+    </div>
+</form>
+
+
 
 <br>
     <div class="film-gallery">

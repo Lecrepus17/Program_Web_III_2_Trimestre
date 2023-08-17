@@ -9,7 +9,11 @@
 <body>
     <header>
         <h1>Filmes</h1>
-
+        <a href="{{ route('logout')}}">Sair</a>
+        @if (auth()->user()->admin)
+        <a href="{{ route('create.filme') }}">Adicionar filmes</a>
+        <a href="{{ route('create.cater') }}">Adicionar Categoria</a>
+        @endif
     </header>
 
     <div class="container">

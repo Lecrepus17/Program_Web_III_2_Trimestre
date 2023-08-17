@@ -69,7 +69,7 @@ class ControllerFilme extends Controller
     public function deleteFilmes($id){
 
         $filme = Filme::findOrFail($id);
-
+        $filme->categorias()->detach();
         $filme->delete();
 
         return redirect()->route('filmes.index');
