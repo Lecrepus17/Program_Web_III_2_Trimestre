@@ -1,6 +1,7 @@
 @extends('includes.layout')
 
 @section('content')
+
     <div class="film-filters">
         <form action="{{ route('filmes.index') }}" method="GET">
             <label for="ano">Filtrar por Ano:</label>
@@ -20,6 +21,7 @@
             <button type="submit">Filtrar</button>
         </form>
     </div>
+
     <div class="film-gallery">
         @foreach ($filmes as $filme)
         <div class="film-card">

@@ -13,12 +13,19 @@ use Illuminate\Validation\Rule;
 
 class ControllerUser extends Controller
 {
+
+    /*public function index(){
+
+        $user = User::all();
+        return view('');
+    }*/
+
     public function createUser(Request $request){
         if ($request->isMethod('POST')) {
             $usr = $request->validate([
-                'name' => ['string|required'],
-                'email' => ['email|required', Rule::unique('user')],
-                'password' => ['string|required'],
+                'name' => 'string|required',
+                'email' => 'email|required', Rule::unique('user'),
+                'password' => 'string|required',
             ]);
 
             $usr['password'] = Hash::make($usr['password']);
@@ -27,8 +34,11 @@ class ControllerUser extends Controller
             // Lança um evento Registered que vai enviar um e-mail para o usuário
             event(new Registered($user));
 
-            return redirect()->route('addUser');
+            return redirect()->route('login');
         }
+        return view('add');
+
+        //return view('add');
     }
 
     public function destroy($id)
