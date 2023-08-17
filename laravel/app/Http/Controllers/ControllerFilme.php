@@ -90,14 +90,17 @@ class ControllerFilme extends Controller
     public function updateFilmes(Request $request, $id){
         $filme = Filme::findOrFail($id);
 
-        $imagem = $request->file('imagem')->store('imagem', 'public');
+        $imagePath = $request->file('imagem')->store('imagem', 'public');
+
+
         $filme->update([
+            'imagem' => $imagePath,
             'name' => $request->name,
             'sinopse' => $request->sinopse,
             'ano' => $request->ano,
-            $imagem => $request->imagem,
             'link' => $request->link,
         ]);
+
 
         return redirect()->route('filmes.index');
     }
