@@ -1,6 +1,7 @@
 @extends('includes.layout')
 
 @section('content')
+<a href="{{ route('filmes.index')}}">Voltar</a>
     <div class="film-card">
         <h2>{{ $filme->name }}</h2>
         <img src="{{ asset('storage/' . $filme->imagem) }}" alt="{{ $filme->name }}">

@@ -2,9 +2,9 @@
 
 @section('content')
 
-
+<a href="{{ route('logout')}}">Sair</a>
 <a href="{{ route('create.filme') }}">Adicionar filmes</a>
-
+<div class="login-form">
     <div class="film-filters">
         <form action="{{ route('filmes.index') }}" method="GET">
             <label for="ano">Filtrar por Ano:</label>
@@ -21,11 +21,15 @@
                     <option value="{{ $categoria->id }}" {{ request('categoria') == $categoria->id ? 'selected' : '' }}>{{ $categoria->name }}</option>
                 @endforeach
             </select>
-            <button type="submit">Filtrar</button>
+            <div class="film-actions">
+               <button type="submit">Filtrar</button>
+            </div>
+
         </form>
     </div>
+</div>
 
-
+<br>
     <div class="film-gallery">
         @foreach ($filmes as $filme)
         <div class="film-card">
