@@ -1,7 +1,7 @@
 @extends('includes.layout')
 
 @section('content')
-    <div class="film-details">
+    <div class="film-card">
         <h2>{{ $filme->name }}</h2>
         <img src="{{ asset('storage/' . $filme->imagem) }}" alt="{{ $filme->name }}">
         <p>Sinopse: {{ $filme->sinopse }}</p>

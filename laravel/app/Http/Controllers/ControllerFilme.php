@@ -21,31 +21,54 @@ class ControllerFilme extends Controller
 
     public function createFilmes(Request $request){
         if ($request->isMethod('POST')) {
-            $film = $request->validate([
-                'name' => 'string|required',
-                'sinopse' => 'string|required',
-                'ano' => 'string|required',
-                'imagem' => 'string|required',
-                'link' => 'string|required',
-            ]);
+            $film = [
+                'name' => request('name'),
+                'sinopse' => request('sinopse'),
+                'ano' => request('ano'),
+                'imagem' => request('imagem'),
+                'link' => request('link'),
+            ];
 
-            $film = Filme::create($film);
+            Filme::create($film);
             // Lança um evento Registered que vai enviar um e-mail para o usuário
             //event(new Registered($filme));
 
-            //return redirect()->route('filme.show');
+            return redirect()->route('filmes.index');
 
         }
         return view('filmes/addFilme');
         //return dd($film);
     }
 
-    public function deleteFilmes(){
+    public function deleteFilmes($id){
+
+        $filme = Filme::findOrFail($id);
+
+        $filme->delete();
+
+        return redirect()->route('filmes.index');
 
     }
 
-    public function editFilmes(){
+    public function editFilmes(Filme $filme){
 
+        return view('filmes/edit', [
+            'film' => $filme,
+        ]);
+    }
+
+    public function updateFilmes(Filme $filme){
+        $dados = [
+            'name' => request('name'),
+            'sinopse' => request('sinopse'),
+            'ano' => request('ano'),
+            'imagem' => request('imagem'),
+            'link' => request('link'),
+        ];
+
+        $filme->save($dados);
+
+        return redirect()->route('filmes.show');
     }
 
 }

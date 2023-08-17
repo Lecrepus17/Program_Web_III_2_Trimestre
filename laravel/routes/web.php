@@ -44,5 +44,9 @@ Route::put('/userUpdate/{id}', [ControllerUser::class, 'userUpdate'])->name('use
 Route::get('/userDelete/{id}', [ControllerUser::class, 'destroy'])->name('users.delete');
 Route::get('/users/promote/{id}', [ControllerUser::class, 'promote'])->name('users.promote');
 
+Route::get('/deleteFilme/{id}', [ControllerFilme::class, 'deleteFilmes'])->name('delete.filme');
+Route::get('/editFilme/{id}', [ControllerFilme::class, 'editFilmes'])->name('edit.filme');
+Route::post('/editFilme/{id}', [ControllerFilme::class, 'updateFilmes']);
+
 });
 

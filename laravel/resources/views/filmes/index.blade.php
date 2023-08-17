@@ -2,6 +2,7 @@
 
 @section('content')
 
+<a href="{{ route('create.filme') }}">Adicionar filmes</a>
     <div class="film-gallery">
         @foreach ($filmes as $filme)
         <div class="film-card">
@@ -13,10 +14,10 @@
             </a>
                         @if (auth()->user()->admin)
             <div class="film-actions">
-                <a href="#">Editar</a>
-                <form action="#" method="POST">
+                <a href="{{ route('edit.filme', $filme->id)}}">Editar</a>
+                <form action="{{ route('delete.filme', $filme->id) }}" method="POST">
                     @csrf
-                    @method('DELETE')
+                    @method('GET')
                     <button type="submit" onclick="return confirm('Tem certeza que deseja excluir este filme?')">Excluir</button>
                 </form>
 

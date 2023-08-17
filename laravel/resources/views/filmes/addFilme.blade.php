@@ -9,7 +9,7 @@
         <input type="text" name="name" placeholder="Nome do filme">
         <input type="text" name="sinopse" placeholder="Sinopse">
         <input type="text" name="ano" placeholder="Ano">
-        <input type="text" name="magem" placeholder="Link da imagem">
+        <input type="file" name="imagem" placeholder="Link da imagem">
         <input type="text" name="link" placeholder="Link do trailer">
         <input type="submit" value="Adicionar">
     </form>

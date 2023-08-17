@@ -18,7 +18,7 @@ return new class extends Migration
             $table->year('ano');
             $table->string('imagem');
             $table->string('link');
-            $table->integer('indicativa');
+            $table->integer('indicativa')->nullable();
             $table->timestamps();
         });
     }

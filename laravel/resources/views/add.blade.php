@@ -10,10 +10,11 @@
 <body>
 
 <div class="login-container">
-    <a href="{{ route('login') }}">Logar</a>
+
     <form action="{{ url()->current() }}" method="post" class="login-form">
         @csrf
         <h2>Adicionar usuários</h2>
+        <a href="{{ route('login') }}">Logar</a>
         <input type="text" name="name" placeholder="Nome">
         <input type="text" name="email" placeholder="Email">
         <input type="password" name="password" placeholder="Senha">
