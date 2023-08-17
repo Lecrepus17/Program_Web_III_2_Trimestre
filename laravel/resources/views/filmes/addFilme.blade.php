@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="login-container">
-    <form action="{{ url()->current() }}" method="post" class="login-form">
+    <form action="{{ url()->current() }}" method="post" class="login-form"  enctype="multipart/form-data">
         @csrf
         <h2>Adicionar filme</h2>
         <input type="text" name="name" placeholder="Nome do filme">
