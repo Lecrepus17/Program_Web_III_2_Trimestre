@@ -14,6 +14,9 @@
                     </label><br>
                 @endforeach
             </div>
-            <button type="submit">Salvar</button>
+            <div class="film-actions">
+              <button type="submit">Salvar</button>
+            </div>
+
         </form>
 @endsection
