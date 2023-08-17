@@ -4,6 +4,7 @@
 
 <a href="{{ route('logout')}}">Sair</a>
 <a href="{{ route('create.filme') }}">Adicionar filmes</a>
+<a href="{{ route('create.cater') }}">Adicionar Categoria</a>
 <div class="login-form">
     <div class="film-filters">
         <form action="{{ route('filmes.index') }}" method="GET">
@@ -42,6 +43,7 @@
         @if (auth()->user()->admin)
             <div class="film-actions">
                 <a href="{{ route('edit.filme', $filme->id)}}">Editar</a>
+                <a href="{{ route('cater.filme', $filme->id)}}">Categoria</a>
                 <form action="{{ route('delete.filme', $filme->id) }}" method="POST">
                     @csrf
                     @method('GET')
