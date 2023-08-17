@@ -74,23 +74,29 @@ class ControllerFilme extends Controller
         return $this->hasMany(Filcater::class, 'filme_fk');
     }
 
-    public function editFilmes(Filme $filme){
+    public function editFilmes($id){
 
-        return view('filmes/edit', [
-            'film' => $filme,
-        ]);
+        $filme = Filme::findOrFail($id);
+
+        return view('filmes/edit', compact('filme'));
+
     }
 
-    public function updateFilmes(Filme $filme){
-        $dados = [
-            'name' => request('name'),
-            'sinopse' => request('sinopse'),
-            'ano' => request('ano'),
-            'imagem' => request('imagem'),
-            'link' => request('link'),
-        ];
+    public function updateFilmes(Request $request, $id){
 
-        $filme->save($dados);
+        $filme = Filme::findOrFail($id);
+
+        $imagem = $request->file('imagem')->store('imagem', 'public');
+        $filme->update([
+            'name' => $request->name,
+            'sinopse' => $request->sinopse,
+            'ano' => $request->ano,
+            $imagem => $request->imagem,
+            'link' => $request->link,
+        ]);
+
+
+
 
         return redirect()->route('filmes.show');
     }

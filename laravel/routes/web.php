@@ -46,7 +46,7 @@ Route::get('/users/promote/{id}', [ControllerUser::class, 'promote'])->name('use
 
 Route::get('/deleteFilme/{id}', [ControllerFilme::class, 'deleteFilmes'])->name('delete.filme');
 Route::get('/editFilme/{id}', [ControllerFilme::class, 'editFilmes'])->name('edit.filme');
-Route::post('/editFilme/{id}', [ControllerFilme::class, 'updateFilmes']);
+Route::post('/editFilme/{id}', [ControllerFilme::class, 'updateFilmes'])->name('update.filme');
 
 });
 
