@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ControllerCategoria;
 use App\Http\Controllers\ControllerFilme;
 use App\Http\Controllers\ControllerUser;
 use Illuminate\Support\Facades\Route;
@@ -38,6 +39,9 @@ Route::middleware('isAdmin')->group(function (){
 Route::get('/addFilme', [ControllerFilme::class, 'createFilmes'])->name('create.filme');
 Route::post('/addFilme', [ControllerFilme::class, 'createFilmes']);
 
+Route::get('/addCater', [ControllerCategoria::class, 'createCater'])->name('create.cater');
+Route::post('/addCater', [ControllerCategoria::class, 'createCater']);
+
 Route::get('/users', [ControllerUser::class, 'index'])->name('users');
 Route::get('/userEdit/{id}', [ControllerUser::class, 'userEdit'])->name('users.edit');
 Route::put('/userUpdate/{id}', [ControllerUser::class, 'userUpdate'])->name('users.update');
@@ -47,6 +51,10 @@ Route::get('/users/promote/{id}', [ControllerUser::class, 'promote'])->name('use
 Route::get('/deleteFilme/{id}', [ControllerFilme::class, 'deleteFilmes'])->name('delete.filme');
 Route::get('/editFilme/{id}', [ControllerFilme::class, 'editFilmes'])->name('edit.filme');
 Route::post('/editFilme/{id}', [ControllerFilme::class, 'updateFilmes'])->name('update.filme');
+Route::post('/editFilme/{id}', [ControllerFilme::class, 'updateFilmes']);
+Route::get('/caterFilme/{id}', [ControllerFilme::class, 'caterFilme'])->name('cater.filme');
+Route::post('/linkCater', [ControllerFilme::class, 'linkCater'])->name('link.cater');
+
 
 });
 

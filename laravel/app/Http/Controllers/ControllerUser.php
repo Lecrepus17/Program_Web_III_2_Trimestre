@@ -109,4 +109,5 @@ class ControllerUser extends Controller
 
         return redirect()->route('users')->with('success', 'Usuário promovido para administrador.');
     }
+
 }

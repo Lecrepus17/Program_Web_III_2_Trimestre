@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Categoria;
+use App\Models\Filcater;
 use App\Models\Filme;
 use Illuminate\Http\Request;
 
@@ -100,5 +101,29 @@ class ControllerFilme extends Controller
 
         return redirect()->route('filmes.show');
     }
+    public function caterFilme(Request $request, $id)
+    {
+        $selectedFilme = Filme::findOrFail($id);
+        $categorias = Categoria::all();
 
+        return view('filmes.cater', compact('selectedFilme', 'categorias'));
+    }
+    public function linkCater(Request $request)
+    {
+
+        $filmeId = $request->input('filmeid');
+
+        $categorias = $request->input('categorias', []);
+
+        $filme = Filme::findOrFail($filmeId);
+
+        // Sync as categorias selecionadas com o filme
+        foreach ($categorias as $categoriaId) {
+            Filcater::create([
+                'filme_fk' => $filmeId,
+                'categoria_fk' => $categoriaId,
+            ]);
+        }
+        return redirect()->route('filmes.index')->with('success', 'Categorias vinculadas com sucesso.');
+    }
 }
