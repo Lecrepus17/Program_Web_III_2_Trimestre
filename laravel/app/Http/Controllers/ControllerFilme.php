@@ -94,10 +94,10 @@ class ControllerFilme extends Controller
 
 
         $filme->update([
-            'imagem' => $imagePath,
             'name' => $request->name,
             'sinopse' => $request->sinopse,
             'ano' => $request->ano,
+            'imagem' => $imagePath,
             'link' => $request->link,
         ]);
 
