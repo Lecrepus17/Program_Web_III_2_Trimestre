@@ -51,7 +51,6 @@ Route::get('/users/promote/{id}', [ControllerUser::class, 'promote'])->name('use
 Route::get('/deleteFilme/{id}', [ControllerFilme::class, 'deleteFilmes'])->name('delete.filme');
 Route::get('/editFilme/{id}', [ControllerFilme::class, 'editFilmes'])->name('edit.filme');
 Route::post('/editFilme/{id}', [ControllerFilme::class, 'updateFilmes'])->name('update.filme');
-Route::post('/editFilme/{id}', [ControllerFilme::class, 'updateFilmes']);
 Route::get('/caterFilme/{id}', [ControllerFilme::class, 'caterFilme'])->name('cater.filme');
 Route::post('/linkCater', [ControllerFilme::class, 'linkCater'])->name('link.cater');
 

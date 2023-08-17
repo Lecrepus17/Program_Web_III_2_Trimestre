@@ -84,7 +84,6 @@ class ControllerFilme extends Controller
     }
 
     public function updateFilmes(Request $request, $id){
-
         $filme = Filme::findOrFail($id);
 
         $imagem = $request->file('imagem')->store('imagem', 'public');
@@ -96,10 +95,7 @@ class ControllerFilme extends Controller
             'link' => $request->link,
         ]);
 
-
-
-
-        return redirect()->route('filmes.show');
+        return redirect()->route('filmes.index');
     }
     public function caterFilme(Request $request, $id)
     {
